@@ -1,21 +1,17 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "expressjs-auth-server.js",
   "type": "module",
   "scripts": {
     "start": "node expressjs-auth-server.js",
-    "dev": "nodemon expressjs-auth-server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon expressjs-auth-server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "User authentication backend with Express.js and MongoDB Atlas",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^5.1.0",
-    "mongoose": "^8.6.0",
-    "dotenv": "^16.4.5"
+    "mongoose": "^8.18.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

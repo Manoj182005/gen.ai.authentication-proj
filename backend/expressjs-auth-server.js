@@ -1,30 +1,25 @@
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
+import connectDB from "./src/config/db.js";
+import authRoutes from "./src/routes/authRoutes.js";
 
 dotenv.config();
 
+// Connect to MongoDB
+connectDB();
+
 const app = express();
+
 app.use(express.json());
 
-// ✅ Basic test route
+
+// Routes
+app.use("/api/auth", authRoutes);
+
 app.get("/", (req, res) => {
-  res.send("🚀 Backend server is running...");
+  res.send("API is running...");
 });
 
-// ✅ Connect to MongoDB Atlas and start server
-async function start() {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("✅ MongoDB connected successfully");
+const PORT = process.env.PORT || 5000;
 
-    app.listen(process.env.PORT, () => {
-      console.log(`🚀 Server running on port ${process.env.PORT}`);
-    });
-  } catch (err) {
-    console.error("❌ Failed to connect:", err.message);
-    process.exit(1);
-  }
-}
-
-start();
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
