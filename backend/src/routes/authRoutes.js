@@ -39,9 +39,10 @@ router.post("/register", async (req, res) => {
       user: { email: newUser.email, createdAt: newUser.createdAt },
     });
   } catch (error) {
-    console.error("Error in register route:", error);
-    res.status(500).json({ message: "Server error" });
-  }
+  console.error("Error in register route:", error); // keep this
+  res.status(500).json({ message: "Server error", error: error.message }); // add error message
+}
+
 });
 
 export default router;

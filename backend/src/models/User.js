@@ -13,14 +13,11 @@ const userSchema = new mongoose.Schema(
       ],
     },
     password: {
-      type: String,
-      required: [true, "Password is required"],
-      minlength: [6, "Password must be at least 6 characters long"],
-      match: [
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
-        "Password must be alphanumeric (contain letters and numbers)",
-      ],
-    },
+  type: String,
+  required: [true, "Password is required"],
+  minlength: [6, "Password must be at least 6 characters long"],
+},
+
   },
   {
     timestamps: true, // adds createdAt and updatedAt automatically

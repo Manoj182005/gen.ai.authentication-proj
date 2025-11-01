@@ -5,6 +5,10 @@ import User from "../models/User.js";
 // @desc    Register a new user
 // @route   POST /api/auth/signup
 // @access  Public
+
+console.log(req.body);
+
+
 export const signup = async (req, res) => {
   try {
     const { email, password } = req.body;
