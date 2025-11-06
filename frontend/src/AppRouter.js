@@ -1,9 +1,8 @@
-// src/AppRouter.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
-import Login from "./Login";
-import Signup from "./pages/auth/Signup";
+import Login from "./Pages/Auth/Login";
+import Signup from "./Pages/Auth/Signup";
 
 function AppRouter() {
   return (
