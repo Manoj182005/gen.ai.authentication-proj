@@ -17,36 +17,48 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!formData.email || !formData.password) {
-      toast.error("Please enter both email and password!");
-      return;
-    }
+  if (!formData.email || !formData.password) {
+    toast.error("Please enter both email and password!");
+    return;
+  }
 
-    try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", {
-        email: formData.email,
-        password: formData.password,
-      });
+  try {
+    const response = await axios.post("http://localhost:5000/api/auth/login", {
+      email: formData.email,
+      password: formData.password,
+    });
 
-      toast.success("Login successful! 🎉");
+    // ✅ Log entire backend response to console
+    console.log("Login Response:", response.data);
 
-      // Optional: store token in localStorage
-      localStorage.setItem("token", response.data.token);
+    // ✅ Show the message coming from backend
+    toast.success(response.data.message || "Login successful! 🎉");
 
-      // Clear form
-      setFormData({ email: "", password: "" });
+    // ✅ Store JWT token safely for later
+    localStorage.setItem("token", response.data.token);
 
-      // Optional: redirect after login
-      // window.location.href = "/dashboard";
-    } catch (error) {
-      const message =
-        error.response?.data?.message || "Invalid credentials or server error!";
-      toast.error(message);
-    }
-  };
+    // ✅ Optional: store user info if needed
+    localStorage.setItem("user", JSON.stringify(response.data.user));
+
+    // ✅ Clear form
+    setFormData({ email: "", password: "" });
+
+    // ✅ Optional: redirect after login
+    // window.location.href = "/dashboard";
+
+  } catch (error) {
+    // Log the full error in console for debugging
+    console.error("Login Error:", error.response?.data || error.message);
+
+    const message =
+      error.response?.data?.message || "Invalid credentials or server error!";
+    toast.error(message);
+  }
+};
+
 
   return (
     <div
