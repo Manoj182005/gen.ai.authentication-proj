@@ -4,26 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  if (!formData.email || !formData.password) {
-    toast.error("Please enter both email and password!");
-    return;
-  }
 
   try {
     const response = await axios.post("http://localhost:5000/api/auth/login", {
