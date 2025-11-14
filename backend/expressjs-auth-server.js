@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import connectDB from "./src/config/db.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import cors from "cors";
+import userRoutes from "./routes/userRoutes.js";
+app.use("/api/user", userRoutes);
+
 
 dotenv.config();
 
